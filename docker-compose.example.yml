@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  asterisk-fastagi-googlechat:
+    image: vkettenbach/asterisk-fastagi-googlechat:latest
+    container_name: asterisk-fastagi-googlechat
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      WEBHOOK: "<webhook url for the chatroom you want to send to>"
+      HOST: "0.0.0.0"
+      PORT: 4573
+      TIMEOUT: 2

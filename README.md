@@ -2,7 +2,12 @@
 ... and with "Google (Hangouts) Chat" I mean the new one (which tries to copy Slack).
 
 ... using a simple webhook to send messages to a Hangout-Chat-Channel
-in an asynchronous fashion (so it does not block the Asterisk diaplan).
+in an asynchronous fashion, so it does not block the Asterisk diaplan.
+Since calling the webhook can take up to a couple of seconds on an
+embedded device, it makes sense to offload this to a FastAGI
+service while continuing the dial plan.
+
+## Creating a chatroom with webhook in Google chat
 
 
 ## Installation
@@ -35,3 +40,9 @@ Can be found on  [DockerHub]().
 ### Google Chat Webhook Documentation
 Can be found [here](https://developers.google.com/hangouts/chat/how-tos/webhooks)
 and [the source here](https://github.com/googleapis/google-api-python-client).
+
+
+## License
+GNU AGPL v3
+
+Fore more, see [LICENSE](LICENSE)

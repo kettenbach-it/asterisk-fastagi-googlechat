@@ -18,7 +18,6 @@ config = {"webhook": os.environ.get("WEBHOOK"),
           "port": os.environ.get("PORT"),
           "timeout": os.environ.get("TIMEOUT")}
 
-
 if config["webhook"] is not None \
         and config["host"] is not None \
         and config["port"] is not None \
@@ -57,8 +56,8 @@ def post_message(content):
         "text": content
     }
     requests.request(url=config["webhook"], data=json.dumps(content), method="POST", headers={
-            "Content-Type": "application/json; charset=UTF-8"
-        })
+        "Content-Type": "application/json; charset=UTF-8"
+    })
 
 
 class FastAGI(socketserver.StreamRequestHandler):
@@ -72,7 +71,7 @@ class FastAGI(socketserver.StreamRequestHandler):
             agi = AGI(stdin=self.rfile, stdout=self.wfile, stderr=sys.stderr)
             senderthread = threading.Thread(target=post_message, args=(agi.env["agi_arg_1"],))
             senderthread.start()
-            time.sleep(.1)  # This is needed
+            time.sleep(.3)  # This is needed
 
         except TypeError as exception:
             sys.stderr.write('Unable to connect to agi://{} {}\n'.
